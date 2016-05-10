@@ -74,6 +74,8 @@ public class UserViewer extends Component
 
         		drawLimb(g, framePosX, framePosY, user, JointType.RIGHT_HIP, JointType.RIGHT_KNEE);
         		drawLimb(g, framePosX, framePosY, user, JointType.RIGHT_KNEE, JointType.RIGHT_FOOT);
+        		
+        		new SkeletonInstance(user.getSkeleton());
         	}
         }
     }
