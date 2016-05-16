@@ -257,6 +257,7 @@ public class SkeletonInstance {
 
         System.out.println(dataset);
         
+        /*
         BufferedReader datafile = readDataFile("output.arff");
 
         Instances data = null;
@@ -267,7 +268,7 @@ public class SkeletonInstance {
         }
         data.setClassIndex(data.numAttributes() - 1);
         
-        J48 j48 = new J48();
+        NaiveBayes j48 = new NaiveBayes();
 
         // train and make predictions
         try {
@@ -287,6 +288,7 @@ public class SkeletonInstance {
             System.out.print(", actual: " + dataset.classAttribute().value((int) dataset.instance(i).classValue()));
             System.out.println(", predicted: " + dataset.classAttribute().value((int) pred));
         }
+        */
 
     }
 

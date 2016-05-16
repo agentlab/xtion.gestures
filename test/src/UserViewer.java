@@ -3,6 +3,13 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.awt.*;
 import java.awt.image.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import org.openni.*;
 import com.primesense.nite.*;
@@ -16,6 +23,24 @@ public class UserViewer extends Component
     UserTrackerFrameRef mLastFrame;
     BufferedImage mBufferedImage;
     int[] mColors;
+    
+    private SkeletonJoint Head;
+    private SkeletonJoint Neck;
+    private SkeletonJoint LeftShoulder;
+    private SkeletonJoint LeftElbow;
+    private SkeletonJoint LeftHand;
+    private SkeletonJoint RightShoulder;
+    private SkeletonJoint RightElbow;
+    private SkeletonJoint RightHand;
+    private SkeletonJoint Torso;
+    private SkeletonJoint RightHip;
+    private SkeletonJoint RightKnee;
+    private SkeletonJoint RightFoot;
+    private SkeletonJoint LeftHip;
+    private SkeletonJoint LeftKnee;
+    private SkeletonJoint LeftFoot;
+    
+    private Skeleton User;
 
 
     public UserViewer(UserTracker tracker) {
@@ -75,12 +100,103 @@ public class UserViewer extends Component
         		drawLimb(g, framePosX, framePosY, user, JointType.RIGHT_HIP, JointType.RIGHT_KNEE);
         		drawLimb(g, framePosX, framePosY, user, JointType.RIGHT_KNEE, JointType.RIGHT_FOOT);
         		
+        		Head = user.getSkeleton().getJoint(JointType.HEAD);
+        		Neck = user.getSkeleton().getJoint(JointType.NECK);
+        		LeftShoulder =  user.getSkeleton().getJoint(JointType.LEFT_SHOULDER);
+        		LeftElbow = user.getSkeleton().getJoint(JointType.LEFT_ELBOW);
+        		LeftHand = user.getSkeleton().getJoint(JointType.LEFT_HAND);
+        		RightShoulder = user.getSkeleton().getJoint(JointType.RIGHT_SHOULDER);
+        		RightElbow = user.getSkeleton().getJoint(JointType.RIGHT_ELBOW);
+        		RightHand = user.getSkeleton().getJoint(JointType.RIGHT_HAND);
+        		Torso = user.getSkeleton().getJoint(JointType.TORSO);
+        		RightHip = user.getSkeleton().getJoint(JointType.RIGHT_HIP);
+        		RightKnee = user.getSkeleton().getJoint(JointType.RIGHT_KNEE);
+        		RightFoot = user.getSkeleton().getJoint(JointType.RIGHT_FOOT);
+        		LeftHip = user.getSkeleton().getJoint(JointType.LEFT_HIP);
+        		LeftKnee = user.getSkeleton().getJoint(JointType.LEFT_KNEE);
+        		LeftFoot = user.getSkeleton().getJoint(JointType.LEFT_FOOT);
+        		
+        		User = user.getSkeleton();
+        		
         		new SkeletonInstance(user.getSkeleton());
         	}
         }
     }
+    
+    public void scanVectors(String pose) {
+    	write("output.arff" ,toString(Head));
+    	write("output.arff" ,toString(Neck));
+    	write("output.arff" ,toString(LeftShoulder));
+    	write("output.arff" ,toString(LeftElbow));
+    	write("output.arff" ,toString(LeftHand));
+    	write("output.arff" ,toString(RightShoulder));
+    	write("output.arff" ,toString(RightElbow));
+    	write("output.arff" ,toString(RightHand));
+    	write("output.arff" ,toString(Torso));
+    	write("output.arff" ,toString(RightHip));
+    	write("output.arff" ,toString(RightKnee));
+    	write("output.arff" ,toString(RightFoot));
+    	write("output.arff" ,toString(LeftHip));
+    	write("output.arff" ,toString(LeftKnee));
+    	write("output.arff" ,toString(LeftFoot));
+    	write("output.arff" ,pose);
+    	write("output.arff" ,"\n");
+    	
+    	//new SkeletonInstance(User);
+    }
+    
+    public String toString(SkeletonJoint Joint) {
+    	return new String(	Joint.getPosition().getX() + "," + 
+    			Joint.getPosition().getY() + "," +
+    			Joint.getPosition().getZ()) + ",";
+    }
+    
+    public static void write(String fileName, String text) {
+        File file = new File(fileName);
+     
+        try {
+            if(!file.exists()){
+                file.createNewFile();
+                File header = new File("header.txt");
+                copyFile(header, file);
+            }
+  
+            FileWriter out = new FileWriter(file.getAbsoluteFile(), true);
+     
+            try {
+                
+                out.write(text);
+            } finally {
+                out.close();
+            }
+        } catch(IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
+    private static void copyFile(File source, File dest) throws IOException {
+        InputStream is = null;
+        OutputStream os = null;
+        try {
+            is = new FileInputStream(source);
+            os = new FileOutputStream(dest);
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = is.read(buffer)) > 0) {
+                os.write(buffer, 0, length);
+            }
+        } finally {
+            is.close();
+            os.close();
+        }
+    }
 
-    private void drawLimb(Graphics g, int x, int y, UserData user, JointType from, JointType to) {
+    private void print(SkeletonJoint joint) {
+		System.out.print(joint.getPosition().getX() + ", " + joint.getPosition().getY() + ", " + joint.getPosition().getZ() + ", ");
+		
+	}
+
+	private void drawLimb(Graphics g, int x, int y, UserData user, JointType from, JointType to) {
     	com.primesense.nite.SkeletonJoint fromJoint = user.getSkeleton().getJoint(from);
     	com.primesense.nite.SkeletonJoint toJoint = user.getSkeleton().getJoint(to);
     	

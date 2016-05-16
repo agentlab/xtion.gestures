@@ -1,6 +1,8 @@
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
@@ -13,6 +15,7 @@ import org.openni.*;
 import com.primesense.nite.*;
 
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 public class UserViewerApplication {
 
@@ -46,6 +49,59 @@ public class UserViewerApplication {
                 mShouldRun = false;
             }
         });
+        
+     //register to closing event
+        mFrame.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if(SwingUtilities.isLeftMouseButton(arg0)) {
+					System.out.println("left button(stay)");
+					mViewer.scanVectors("stay");
+				}
+				else if(SwingUtilities.isRightMouseButton(arg0)) {
+					System.out.println("right button(seat)");
+					mViewer.scanVectors("seat");
+				}
+				else if(SwingUtilities.isMiddleMouseButton(arg0)) {
+					System.out.println("middle button(hello)");
+					mViewer.scanVectors("hello");
+				}
+				else 
+				{
+					System.out.println("phone");
+					mViewer.scanVectors("phone");
+				}
+				
+				
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+        	
+        }); 
 
         mViewer.setSize(800, 600);
         mFrame.add("Center", mViewer);
