@@ -257,7 +257,7 @@ public class SkeletonInstance {
 
         System.out.println(dataset);
         
-        /*
+        
         BufferedReader datafile = readDataFile("output.arff");
 
         Instances data = null;
@@ -288,7 +288,7 @@ public class SkeletonInstance {
             System.out.print(", actual: " + dataset.classAttribute().value((int) dataset.instance(i).classValue()));
             System.out.println(", predicted: " + dataset.classAttribute().value((int) pred));
         }
-        */
+        
 
     }
 

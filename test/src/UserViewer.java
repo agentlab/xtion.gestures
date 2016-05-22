@@ -124,6 +124,7 @@ public class UserViewer extends Component
     }
     
     public void scanVectors(String pose) {
+    	/*
     	write("output.arff" ,toString(Head));
     	write("output.arff" ,toString(Neck));
     	write("output.arff" ,toString(LeftShoulder));
@@ -141,7 +142,7 @@ public class UserViewer extends Component
     	write("output.arff" ,toString(LeftFoot));
     	write("output.arff" ,pose);
     	write("output.arff" ,"\n");
-    	
+    	*/
     	//new SkeletonInstance(User);
     }
     

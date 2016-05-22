@@ -57,11 +57,11 @@ public class UserViewerApplication {
 			public void mouseClicked(MouseEvent arg0) {
 				if(SwingUtilities.isLeftMouseButton(arg0)) {
 					System.out.println("left button(stay)");
-					mViewer.scanVectors("stay");
+					mViewer.scanVectors("hello");
 				}
 				else if(SwingUtilities.isRightMouseButton(arg0)) {
 					System.out.println("right button(seat)");
-					mViewer.scanVectors("seat");
+					mViewer.scanVectors("phone");
 				}
 				else if(SwingUtilities.isMiddleMouseButton(arg0)) {
 					System.out.println("middle button(hello)");
