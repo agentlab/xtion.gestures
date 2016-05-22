@@ -1,6 +1,10 @@
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 import java.awt.*;
 import java.awt.image.*;
 import java.io.File;
@@ -40,10 +44,13 @@ public class UserViewer extends Component
     private SkeletonJoint LeftKnee;
     private SkeletonJoint LeftFoot;
     
+    private Ñlassifier classifier;
+    
     private Skeleton User;
 
 
     public UserViewer(UserTracker tracker) {
+    	classifier = new Ñlassifier("output.arff");
     	mTracker = tracker;
         mTracker.addNewFrameListener(this);
         mColors = new int[] { 0xFFFF0000, 0xFF00FF00, 0xFF0000FF, 0xFFFFFF00, 0xFFFF00FF, 0xFF00FFFF };
@@ -118,10 +125,16 @@ public class UserViewer extends Component
         		
         		User = user.getSkeleton();
         		
+        		System.out.println(classifier);
+        		
+        		g.setFont(new Font("TimesRoman", Font.PLAIN, 60)); 
+        		g.drawString(classifier.predict(user.getSkeleton()), 300, 100);
+        		
         		new SkeletonInstance(user.getSkeleton());
         	}
         }
     }
+    
     
     public void scanVectors(String pose) {
     	/*
