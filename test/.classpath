@@ -2,16 +2,16 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-	<classpathentry kind="lib" path="com.primesense.nite.jar">
+	<classpathentry kind="lib" path="C:/Program Files/PrimeSense/NiTE2/Redist/com.primesense.nite.jar">
 		<attributes>
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="test"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="org.openni.jar">
+	<classpathentry kind="lib" path="C:/Program Files/OpenNI2/Redist/org.openni.jar">
 		<attributes>
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="test"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="weka.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Weka-3-6/weka.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
