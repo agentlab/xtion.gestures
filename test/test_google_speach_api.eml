@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component inherit-compiler-output="true" inheritJdk="true">
+	<output-test url="file://$MODULE_DIR$/out/test/test_google_speach_api"/>
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$"/>
+	<lib name="JARVIS-API.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/JARVIS-API.jar!/"/>
+	</lib>
+	<lib name="java-json.jar" scope="COMPILE">
+		<srcroot url="jar://$MODULE_DIR$/lib/java-json.jar!/"/>
+		<relative-module-src project-related="jar://$PROJECT_DIR$/lib/java-json.jar!/"/>
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/java-json.jar!/"/>
+	</lib>
+	<lib name="java-string-similarity-0.19.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/java-string-similarity-0.19.jar!/"/>
+	</lib>
+	<lib name="javaFlacEncoder-0.3.1.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/javaFlacEncoder-0.3.1.jar!/"/>
+	</lib>
+	<lib name="jcommon-1.0.23.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/jcommon-1.0.23.jar!/"/>
+	</lib>
+	<lib name="jfreechart-1.0.19.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/jfreechart-1.0.19.jar!/"/>
+	</lib>
+	<lib name="JTransforms-3.1-with-dependencies.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/JTransforms-3.1-with-dependencies.jar!/"/>
+	</lib>
+	<levels>
+		<level name="jflac-1.3" value="project"/>
+	</levels>
+</component>
